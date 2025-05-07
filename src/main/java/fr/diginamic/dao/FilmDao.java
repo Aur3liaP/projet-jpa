@@ -14,12 +14,10 @@ import java.util.List;
  */
 public class FilmDao implements BaseDao<Film> {
 
-    private EntityManagerFactory emf;
     private EntityManager em;
 
-    public FilmDao() {
-        this.emf = Persistence.createEntityManagerFactory("imdb");
-        this.em = emf.createEntityManager();
+    public FilmDao(EntityManager em) {
+        this.em = em;
     }
 
     @Override
@@ -53,6 +51,9 @@ public class FilmDao implements BaseDao<Film> {
     }
 
     public boolean existsById(String idImdb) {
-        return findById(idImdb) != null;
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(f) FROM Film f WHERE f.idImdb = :id", Long.class);
+        query.setParameter("id", idImdb);
+        return query.getSingleResult() > 0;
     }
 }
