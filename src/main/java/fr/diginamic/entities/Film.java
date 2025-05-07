@@ -148,6 +148,115 @@ public class Film {
         return role;
     }
 
+    public String getIdImdb() {
+        return idImdb;
+    }
+
+    public void setIdImdb(String idImdb) {
+        this.idImdb = idImdb;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public Integer getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Integer annee) {
+        this.annee = annee;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public void setLangue(String langue) {
+        this.langue = langue;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    public Pays getPays() {
+        return pays;
+    }
+
+    public void setPays(Pays pays) {
+        this.pays = pays;
+    }
+
+    public Lieu getLieuTournage() {
+        return lieuTournage;
+    }
+
+    public void setLieuTournage(Lieu lieuTournage) {
+        this.lieuTournage = lieuTournage;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public List<Realisateur> getRealisateurs() {
+        return realisateurs;
+    }
+
+    public void setRealisateurs(List<Realisateur> realisateurs) {
+        this.realisateurs = realisateurs;
+    }
+
+    public List<Acteur> getActeurs() {
+        return acteurs;
+    }
+
+    public void setActeurs(List<Acteur> acteurs) {
+        this.acteurs = acteurs;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    /**
+     *
+     * Getters et Setters
+     */
+
 
 
     @Override
