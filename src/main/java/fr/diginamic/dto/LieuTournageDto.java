@@ -66,20 +66,6 @@ public class LieuTournageDto {
     public void setPays(PaysDto pays) {
         this.pays = pays;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LieuTournageDto that = (LieuTournageDto) o;
-        return Objects.equals(ville, that.ville) &&
-                Objects.equals(etatRegion, that.etatRegion) &&
-                Objects.equals(pays, that.pays);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ville, etatRegion, pays);
-    }
 
     @Override
     public String toString() {

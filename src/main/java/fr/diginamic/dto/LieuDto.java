@@ -2,6 +2,7 @@ package fr.diginamic.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.diginamic.entities.Pays;
 
 /**
  * DTO (Data Transfer Object) pour la représentation d'un Lieu.
@@ -19,7 +20,7 @@ public class LieuDto {
     private String ville;
 
     @JsonProperty("pays")
-    private PaysDto pays;
+    private String pays;
 
     /**
      * Constructeur par défaut
@@ -33,7 +34,7 @@ public class LieuDto {
      * @param etatRegion l'état/Region du lieu
      * @param pays le pays du lieu
      */
-    public LieuDto(String etatRegion, PaysDto pays) {
+    public LieuDto(String etatRegion, String pays) {
         this.etatRegion = etatRegion;
         this.pays = pays;
     }
@@ -45,7 +46,7 @@ public class LieuDto {
      * @param etatRegion l'état/Region du lieu
      * @param pays le pays du lieu
      */
-    public LieuDto(String etatRegion, String ville, PaysDto pays) {
+    public LieuDto(String etatRegion, String ville, String pays) {
         this.ville = ville;
         this.etatRegion = etatRegion;
         this.pays = pays;
@@ -69,11 +70,11 @@ public class LieuDto {
     }
 
 
-    public PaysDto getPays() {
+    public String getPays() {
         return pays;
     }
 
-    public void setPays(PaysDto pays) {
+    public void setPays(String pays) {
         this.pays = pays;
     }
 

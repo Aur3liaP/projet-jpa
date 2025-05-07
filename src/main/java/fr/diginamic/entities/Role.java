@@ -50,5 +50,15 @@ public class Role {
     public void setPersonnage(String personnage) {
         this.personnage = personnage;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Role{");
+        sb.append("film=").append(film);
+        sb.append(", acteur=").append(acteur);
+        sb.append(", personnage='").append(personnage).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
