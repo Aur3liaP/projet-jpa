@@ -2,12 +2,8 @@ package fr.diginamic;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.diginamic.dao.FilmDao;
-import fr.diginamic.dao.PaysDao;
 import fr.diginamic.dto.FilmDto;
-import fr.diginamic.entities.Film;
-import fr.diginamic.entities.Pays;
-import fr.diginamic.mapper.FilmMapper;
+import fr.diginamic.service.FilmService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -35,10 +31,9 @@ public class App {
             List<FilmDto> filmDtos = mapper.readValue(input, new TypeReference<List<FilmDto>>() {});
 
             /**
-             * Initialiser DAO
+             * Initialiser Services
              */
-            FilmDao filmDao = new FilmDao(em);
-            PaysDao paysDao = new PaysDao(em);
+            FilmService filmService = new FilmService(em);
 
 
             /**
@@ -46,27 +41,7 @@ public class App {
              */
             for (FilmDto filmDto : filmDtos) {
                 try {
-                    Film film = FilmMapper.toFilm(filmDto);
-
-                    /**
-                     * Vérifie si le pays est déjà présent
-                     */
-                    if (film.getPays() != null) {
-                        String nomPays = film.getPays().getNom();
-                        Pays paysExistant = paysDao.findByNom(nomPays);
-                        if (paysExistant != null) {
-                            film.setPays(paysExistant);
-                        } else {
-                            paysDao.insert(film.getPays());
-                        }
-                    }
-
-                    /**
-                     * Vérifie si le film est déjà présent
-                     */
-                    if (!filmDao.existsById(film.getIdImdb())) {
-                        filmDao.insert(film);
-                    }
+                    filmService.traiterFilm(filmDto);
 
                 } catch (Exception e) {
                     // TODO voir pour le rapport de logs
