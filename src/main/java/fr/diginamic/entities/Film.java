@@ -42,7 +42,7 @@ public class Film {
     private String langue;
 
     /** Résumé ou synopsis du film */
-    @Column(name = "RESUME", length = 255)
+    @Column(name = "RESUME", length = 500)
     private String resume;
 
     /** Pays d'origine du film */
