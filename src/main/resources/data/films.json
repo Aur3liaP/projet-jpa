@@ -9,6 +9,15 @@
   "rating" : "6.3",
   "plot" : "Two generations of men find themselves haunted by the presence of a spectral woman. When the son of one of the elderly men returns to his hometown after his brother's mysterious death, they attempt to unravel her story.",
   "langue" : "English",
+  "realisateurs" : [ {
+    "id" : "nm0233071",
+    "identite" : "Tom Donovan",
+    "url" : "/name/nm0233071/?ref_=tt_ov_dr",
+    "naissance" : {
+      "dateNaissance" : "February 8 1946 ",
+      "lieuNaissance" : "Dublin, Ireland "
+    }
+  } ],
   "lieuTournage" : {
     "ville" : "Santa Clarita",
     "etatDept" : " California",
@@ -26,6 +35,15 @@
   "rating" : "6.5",
   "plot" : "The mysterious owner of a costume shop rents a Santa Claus suit to three very different men: a math teacher trying to get the nerve to propose, a homeless restaurateur trying to hide from the mob, and a harried political speech writer visiting with his estranged wife and son. Their lives are inexorably changed by their experience of playing Santa Claus.",
   "langue" : "English",
+  "realisateurs" : [ {
+    "id" : "nm0233072",
+    "identite" : "Bill Donovan",
+    "url" : "/name/nm0233072/?ref_=tt_ov_dr",
+    "naissance" : {
+      "dateNaissance" : "August 1 1922 ",
+      "lieuNaissance" : "Boston, Massachusetts, USA "
+    }
+  } ],
   "lieuTournage" : {
     "ville" : "Santa Clarita",
     "etatDept" : " California",
@@ -44,6 +62,15 @@
     "rating": "7.1",
     "plot": "The adventures of a film stuntman who moonlights as a bounty hunter when movie work is slow.",
     "langue": "English",
+    "realisateurs" : [ {
+      "id" : "nm0233071",
+      "identite" : "Tom Donovan",
+      "url" : "/name/nm0233071/?ref_=tt_ov_dr",
+      "naissance" : {
+        "dateNaissance" : "August 1 1922 ",
+        "lieuNaissance" : "Boston, Massachusetts, USA "
+      }
+    } ],
     "lieuTournage" : {
     "ville" : "Santa Clarita",
     "etatDept" : " California",

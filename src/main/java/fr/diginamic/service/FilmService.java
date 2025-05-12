@@ -14,6 +14,7 @@ public class FilmService {
     private final PaysService paysService;
     private final LieuService lieuService;
     private final GenreService genreService;
+    private final RealisateurService realisateurService;
 
     /**
      * Service dédié à la gestion des entités Films.
@@ -23,6 +24,7 @@ public class FilmService {
         this.paysService = new PaysService(em);
         this.lieuService = new LieuService(em);
         this.genreService = new GenreService(em);
+        this.realisateurService = new RealisateurService(em);
     }
 
     /**
@@ -46,6 +48,12 @@ public class FilmService {
                     .map(genreService::getOrCreateGenre)
                     .collect(Collectors.toList());
             film.setGenres(genres);
+        }
+        if (film.getRealisateurs() != null) {
+            List<Realisateur> realisateurs = film.getRealisateurs().stream()
+                    .map(realisateurService::getOrCreateRealisateur)
+                    .collect(Collectors.toList());
+            film.setRealisateurs(realisateurs);
         }
 
         if (!filmDao.existsById(film.getIdImdb())) {

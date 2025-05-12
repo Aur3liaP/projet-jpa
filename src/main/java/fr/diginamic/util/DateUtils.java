@@ -14,6 +14,8 @@ public class DateUtils {
             return null;
         }
 
+        dateStr = dateStr.trim();
+
         DateTimeFormatter[] formatters = new DateTimeFormatter[]{
                 DateTimeFormatter.ofPattern("MMMM d yyyy", Locale.ENGLISH),
                 DateTimeFormatter.ofPattern("MMMM dd yyyy", Locale.ENGLISH),

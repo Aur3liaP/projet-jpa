@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class NaissanceDto {
 
     private String dateNaissance;
-    private LieuDto lieuNaissance;
+    private String lieuNaissance;
 
     /**
      * Constructeur par défaut
@@ -25,7 +25,7 @@ public class NaissanceDto {
      * @param dateNaissance de l'acteur/realisateur
      * @param lieuNaissance de l'acteur/realisateur
      */
-    public NaissanceDto(String dateNaissance, LieuDto lieuNaissance) {
+    public NaissanceDto(String dateNaissance, String lieuNaissance) {
         this.dateNaissance = dateNaissance;
         this.lieuNaissance = lieuNaissance;
     }
@@ -41,11 +41,11 @@ public class NaissanceDto {
         this.dateNaissance = dateNaissance;
     }
 
-    public LieuDto getLieuNaissance() {
+    public String getLieuNaissance() {
         return lieuNaissance;
     }
 
-    public void setLieuNaissance(LieuDto lieuNaissance) {
+    public void setLieuNaissance(String lieuNaissance) {
         this.lieuNaissance = lieuNaissance;
     }
 

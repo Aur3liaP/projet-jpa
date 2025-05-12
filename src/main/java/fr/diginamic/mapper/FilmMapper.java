@@ -21,12 +21,12 @@ public class FilmMapper {
 
         film.setPays(PaysMapper.toEntity(dto.getPays()));
         film.setLieuTournage(LieuMapper.toEntity(dto.getLieuTournage()));
-//
-//        film.setRealisateurs(
-//                dto.getRealisateurs().stream()
-//                        .map(RealisateurMapper::toEntity)
-//                        .collect(Collectors.toList())
-//        );
+
+        film.setRealisateurs(
+                dto.getRealisateurs().stream()
+                        .map(RealisateurMapper::toEntity)
+                        .collect(Collectors.toList())
+        );
 //
 //        film.setActeurs(
 //                dto.getActeursPrincipaux().stream()

@@ -12,8 +12,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class DateUtilsTest {
     @Test
     public void testParseDate() {
-        String dateStr = "May 7 1940";
-        LocalDate expectedDate = LocalDate.of(1940, 5, 7);
+        String dateStr = "February 8 1946";
+        LocalDate expectedDate = LocalDate.of(1946, 2, 8);
+        LocalDate parsedDate = DateUtils.parseDate(dateStr);
+        assertEquals(expectedDate, parsedDate);
+    }
+
+    @Test
+    public void testParseDateWithSpace() {
+        String dateStr = "February 8 1946 ";
+        LocalDate expectedDate = LocalDate.of(1946, 2, 8);
         LocalDate parsedDate = DateUtils.parseDate(dateStr);
         assertEquals(expectedDate, parsedDate);
     }
