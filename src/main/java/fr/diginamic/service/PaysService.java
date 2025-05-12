@@ -20,7 +20,7 @@ public class PaysService {
      * @param pays L'objet Pays à vérifier ou insérer
      * @return L'entité Pays persistée (existant ou nouvellement insérée)
      */
-    public Pays getOrCreate(Pays pays) {
+    public Pays getOrCreatePays(Pays pays) {
         if (pays == null || pays.getNom() == null) return null;
 
         Pays existant = paysDao.findByNom(pays.getNom());

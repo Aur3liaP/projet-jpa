@@ -1,12 +1,6 @@
 package fr.diginamic.mapper;
 
-import fr.diginamic.dto.FilmDto;
-import fr.diginamic.dto.PaysDto;
-import fr.diginamic.dto.LieuDto;
-import fr.diginamic.dto.RealisateurDto;
-import fr.diginamic.dto.ActeurDto;
-import fr.diginamic.dto.RoleDto;
-import fr.diginamic.dto.GenreDto;
+import fr.diginamic.dto.*;
 import fr.diginamic.entities.Film;
 
 import java.util.stream.Collectors;
@@ -26,7 +20,7 @@ public class FilmMapper {
         film.setAnnee(dto.getAnnee());
 
         film.setPays(PaysMapper.toEntity(dto.getPays()));
-//        film.setLieuTournage(LieuMapper.toEntity(dto.getLieuTournage()));
+        film.setLieuTournage(LieuMapper.toEntity(dto.getLieuTournage()));
 //
 //        film.setRealisateurs(
 //                dto.getRealisateurs().stream()

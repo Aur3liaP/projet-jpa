@@ -8,7 +8,13 @@
   "url" : "/title/tt0082449/?ref_=nm_flmg_t_1_act",
   "rating" : "6.3",
   "plot" : "Two generations of men find themselves haunted by the presence of a spectral woman. When the son of one of the elderly men returns to his hometown after his brother's mysterious death, they attempt to unravel her story.",
-  "langue" : "English"
+  "langue" : "English",
+  "lieuTournage" : {
+    "ville" : "Santa Clarita",
+    "etatDept" : " California",
+    "pays" : " USA"
+  },
+  "genres" : [ "Action", "Adventure", "Comedy" ]
 }, {
   "id" : "tt0077898",
   "pays" : {
@@ -19,10 +25,16 @@
   "url" : "/title/tt0077898/?ref_=nm_flmg_t_2_act",
   "rating" : "6.5",
   "plot" : "The mysterious owner of a costume shop rents a Santa Claus suit to three very different men: a math teacher trying to get the nerve to propose, a homeless restaurateur trying to hide from the mob, and a harried political speech writer visiting with his estranged wife and son. Their lives are inexorably changed by their experience of playing Santa Claus.",
-  "langue" : "English"
+  "langue" : "English",
+  "lieuTournage" : {
+    "ville" : "Santa Clarita",
+    "etatDept" : " California",
+    "pays" : " USA"
+  },
+  "genres" : [ "Action", "Adventure", "Comedy" ]
 },
   {
-    "id": "tt0081860",
+    "id": "tt0081859",
     "pays": {
       "nom": "United States",
       "url": "/search/title/?country_of_origin=US&ref_=tt_dt_cn"
@@ -31,6 +43,12 @@
     "url": "/title/tt0081859/?ref_=nm_flmg_t_5_act",
     "rating": "7.1",
     "plot": "The adventures of a film stuntman who moonlights as a bounty hunter when movie work is slow.",
-    "langue": "English"
+    "langue": "English",
+    "lieuTournage" : {
+    "ville" : "Santa Clarita",
+    "etatDept" : " California",
+    "pays" : " USA"
+  },
+    "genres" : [ "Action", "Adventure", "Comedy" ]
   }
 ]
