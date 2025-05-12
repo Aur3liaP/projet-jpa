@@ -9,13 +9,20 @@
 
     <!-- redirection des logs vers le fichier app.log -->
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>app.log</file>
+        <file>logs/app.log</file>
         <append>true</append>
         <immediateFlush>true</immediateFlush>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
+
+    <logger name="fr.diginamic.logs" level="ERROR" additivity="false">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <logger name="fr.diginamic.service" level="DEBUG" />
 
     <!-- règle de logs par défaut. Ici : niveau INFO vers la sortie standard -->
     <root level="INFO">

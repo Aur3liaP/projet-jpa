@@ -5,8 +5,18 @@ import fr.diginamic.entities.Film;
 
 import java.util.stream.Collectors;
 
+/**
+ * Mapper pour convertir les FilmDto en entités Film.
+ * Gère la transformation des objets de transfert de données (DTO) en objets d'entité.
+ */
 public class FilmMapper {
 
+    /**
+     * Convertit un FilmDto en entité Film.
+     *
+     * @param dto Le DTO du film à convertir
+     * @return L'entité Film correspondante, ou null si le DTO est null
+     */
     public static Film toFilm(FilmDto dto) {
         if (dto == null) return null;
 
@@ -27,12 +37,6 @@ public class FilmMapper {
                         .map(RealisateurMapper::toEntity)
                         .collect(Collectors.toList())
         );
-
-//        film.setActeurs(
-//                dto.getActeursPrincipaux().stream()
-//                        .map(ActeurMapper::toEntity)
-//                        .collect(Collectors.toList())
-//        );
 
         film.setGenres(
                 dto.getGenres().stream()

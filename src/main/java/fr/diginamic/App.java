@@ -7,59 +7,105 @@ import fr.diginamic.service.FilmService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 import java.util.List;
 
 /**
- * Permet de lancer l'application
+ * Classe principale de l'application permettant de charger et traiter les données de films.
+ * Gère le chargement des films depuis un fichier JSON et leur persistance en base de données.
  */
-// TODO verifier la BDD
 public class App {
+    /** Logger pour la journalisation des événements et erreurs */
+    private static final Logger logger = LoggerFactory.getLogger(App.class);
+
+    /** Point d'entrée principal de l'application. */
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("imdb");
-        EntityManager em = emf.createEntityManager();
+        EntityManagerFactory emf = null;
+        EntityManager em = null;
 
         try {
+            emf = Persistence.createEntityManagerFactory("imdb");
+            em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            /**
-             * Lire le JSON depuis resources/data/films.json
-             */
-            ObjectMapper mapper = new ObjectMapper();
-            InputStream input = App.class.getResourceAsStream("/data/films.json");
-            List<FilmDto> filmDtos = mapper.readValue(input, new TypeReference<List<FilmDto>>() {});
+            List<FilmDto> filmDtos = chargerFilms();
 
-            /**
-             * Initialiser Services
-             */
             FilmService filmService = new FilmService(em);
 
-
-            /**
-             * Traitement des films
-             */
-            for (FilmDto filmDto : filmDtos) {
-                try {
-                    filmService.traiterFilm(filmDto);
-
-                } catch (Exception e) {
-                    // TODO voir pour le rapport de logs
-                    System.err.println("Erreur pour le film : " + filmDto.getTitre());
-                    e.printStackTrace();
-                }
-            }
+            traiterFilms(filmDtos, filmService);
 
             em.getTransaction().commit();
+            logger.info("Traitement des films terminé avec succès");
 
         } catch (Exception e) {
-            if (em.getTransaction().isActive()) {
+            logger.error("Erreur lors du traitement des films", e);
+
+            if (em != null && em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            e.printStackTrace();
         } finally {
-            em.close();
-            emf.close();
+            fermerRessources(em, emf);
+        }
+    }
+
+    /**
+     * Charge les films depuis le fichier JSON.
+     *
+     * @return Liste des films chargés
+     * @throws Exception en cas d'erreur de lecture
+     */
+    private static List<FilmDto> chargerFilms() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        try (InputStream input = App.class.getResourceAsStream("/data/films.json")) {
+            if (input == null) {
+                throw new IllegalStateException("Fichier films.json introuvable");
+            }
+            return mapper.readValue(input, new TypeReference<>() {});
+        }
+    }
+
+    /**
+     * Traite la liste des films.
+     *
+     * @param filmDtos Liste des films à traiter
+     * @param filmService Service de traitement des films
+     */
+    private static void traiterFilms(List<FilmDto> filmDtos, FilmService filmService) {
+        int filmsTraites = 0;
+        int filmsEnEchec = 0;
+
+        for (FilmDto filmDto : filmDtos) {
+            try {
+                filmService.traiterFilm(filmDto);
+                filmsTraites++;
+            } catch (Exception e) {
+                filmsEnEchec++;
+                logger.error("Erreur lors du traitement du film : {}", filmDto.getTitre(), e);
+            }
+        }
+
+        logger.info("Résumé : {} films traités, {} films en échec", filmsTraites, filmsEnEchec);
+    }
+
+    /**
+     * Ferme les ressources de persistence.
+     *
+     * @param em EntityManager à fermer
+     * @param emf EntityManagerFactory à fermer
+     */
+    private static void fermerRessources(EntityManager em, EntityManagerFactory emf) {
+        try {
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+            if (emf != null && emf.isOpen()) {
+                emf.close();
+            }
+        } catch (Exception e) {
+            logger.error("Erreur lors de la fermeture des ressources", e);
         }
     }
 }
