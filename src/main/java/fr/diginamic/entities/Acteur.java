@@ -13,7 +13,7 @@ import java.util.List;
 public class Acteur extends Personne {
 
     /** Taille de l'acteur en mètres */
-    @Column(name = "TAILLE", precision = 5, scale = 2)
+    @Column(name = "TAILLE")
     private Double taille;
 
     /** Films dans lesquels l'acteur a joué un rôle principal */

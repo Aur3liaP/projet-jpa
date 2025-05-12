@@ -1,6 +1,7 @@
 package fr.diginamic.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * DTO (Data Transfer Object) pour la représentation d'un Acteur.
@@ -13,6 +14,9 @@ public class ActeurDto {
     private String identite;
     private String url;
     private NaissanceDto naissance;
+
+    @JsonProperty("height")
+    private String taille;
 
     /**
      * Constructeur par défaut
@@ -69,6 +73,14 @@ public class ActeurDto {
 
     public void setNaissance(NaissanceDto naissance) {
         this.naissance = naissance;
+    }
+
+    public String getTaille() {
+        return taille;
+    }
+
+    public void setTaille(String taille) {
+        this.taille = taille;
     }
 
     @Override

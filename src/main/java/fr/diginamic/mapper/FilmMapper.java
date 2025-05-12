@@ -27,19 +27,13 @@ public class FilmMapper {
                         .map(RealisateurMapper::toEntity)
                         .collect(Collectors.toList())
         );
-//
+
 //        film.setActeurs(
 //                dto.getActeursPrincipaux().stream()
 //                        .map(ActeurMapper::toEntity)
 //                        .collect(Collectors.toList())
 //        );
-//
-//        film.setRoles(
-//                dto.getRoles().stream()
-//                        .map(RoleMapper::toEntity)
-//                        .collect(Collectors.toList())
-//        );
-//
+
         film.setGenres(
                 dto.getGenres().stream()
                         .map(GenreMapper::toEntity)
