@@ -6,6 +6,7 @@ import fr.diginamic.entities.Lieu;
 import fr.diginamic.entities.Pays;
 import jakarta.persistence.EntityManager;
 
+
 /**
  * Service dédié à la gestion des entités Lieu.
  */
@@ -22,7 +23,7 @@ public class LieuService {
      * Récupère un lieu de Tournage existant par son nom ou l'insère s'il n'existe pas encore.
      *
      * @param lieu L'objet Lieu à vérifier ou insérer
-     * @return L'entité Lieu persistée (existant ou nouvellement insérée)
+     * @return L'entité Lieu persisté (existant ou nouvellement inséré)
      */
     public Lieu getOrCreateLieu(Lieu lieu) {
         Pays paysPersisted = paysService.getOrCreatePays(lieu.getPays());

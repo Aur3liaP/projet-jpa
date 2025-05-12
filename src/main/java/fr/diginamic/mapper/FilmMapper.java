@@ -40,11 +40,11 @@ public class FilmMapper {
 //                        .collect(Collectors.toList())
 //        );
 //
-//        film.setGenres(
-//                dto.getGenres().stream()
-//                        .map(GenreMapper::toEntity)
-//                        .collect(Collectors.toList())
-//        );
+        film.setGenres(
+                dto.getGenres().stream()
+                        .map(GenreMapper::toEntity)
+                        .collect(Collectors.toList())
+        );
 
         return film;
     }

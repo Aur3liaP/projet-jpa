@@ -42,7 +42,8 @@ public class FilmDto {
 
     private List<RoleDto> roles = new ArrayList<>();
 
-    private List<GenreDto> genres = new ArrayList<>();
+    @JsonProperty("genres")
+    private List<String> genres = new ArrayList<>();
 
     /**
      * Constructeur par défaut
@@ -68,7 +69,7 @@ public class FilmDto {
      * @param genres            Liste des genres auxquels le film appartient (objets DTO).
      */
 
-    public FilmDto(String idImdb, String titre, String url, Float rating, String resume, String langue, Integer annee, PaysDto pays, LieuDto lieuTournage, List<RealisateurDto> realisateurs, List<ActeurDto> acteursPrincipaux, List<RoleDto> roles, List<GenreDto> genres) {
+    public FilmDto(String idImdb, String titre, String url, Float rating, String resume, String langue, Integer annee, PaysDto pays, LieuDto lieuTournage, List<RealisateurDto> realisateurs, List<ActeurDto> acteursPrincipaux, List<RoleDto> roles, List<String> genres) {
         this.idImdb = idImdb;
         this.titre = titre;
         this.url = url;
@@ -184,11 +185,11 @@ public class FilmDto {
         this.roles = roles;
     }
 
-    public List<GenreDto> getGenres() {
+    public List<String> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<GenreDto> genres) {
+    public void setGenres(List<String> genres) {
         this.genres = genres;
     }
 

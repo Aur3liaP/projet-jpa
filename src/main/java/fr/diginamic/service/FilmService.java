@@ -2,16 +2,18 @@ package fr.diginamic.service;
 
 import fr.diginamic.dao.FilmDao;
 import fr.diginamic.dto.FilmDto;
-import fr.diginamic.entities.Film;
-import fr.diginamic.entities.Lieu;
-import fr.diginamic.entities.Pays;
+import fr.diginamic.entities.*;
 import fr.diginamic.mapper.FilmMapper;
 import jakarta.persistence.EntityManager;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class FilmService {
     private final FilmDao filmDao;
     private final PaysService paysService;
     private final LieuService lieuService;
+    private final GenreService genreService;
 
     /**
      * Service dédié à la gestion des entités Films.
@@ -20,6 +22,7 @@ public class FilmService {
         this.filmDao = new FilmDao(em);
         this.paysService = new PaysService(em);
         this.lieuService = new LieuService(em);
+        this.genreService = new GenreService(em);
     }
 
     /**
@@ -38,7 +41,12 @@ public class FilmService {
             Lieu lieu = lieuService.getOrCreateLieu(film.getLieuTournage());
             film.setLieuTournage(lieu);
         }
-
+        if (film.getGenres() != null) {
+            List<Genre> genres = film.getGenres().stream()
+                    .map(genreService::getOrCreateGenre)
+                    .collect(Collectors.toList());
+            film.setGenres(genres);
+        }
 
         if (!filmDao.existsById(film.getIdImdb())) {
             filmDao.insert(film);

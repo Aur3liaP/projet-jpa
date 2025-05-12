@@ -3,7 +3,6 @@ package fr.diginamic.dao;
 import fr.diginamic.entities.Film;
 import jakarta.persistence.*;
 
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -14,30 +13,30 @@ import java.util.List;
  */
 public class FilmDao implements BaseDao<Film> {
 
-    private EntityManager em;
+    private final EntityManager em;
 
     public FilmDao(EntityManager em) {
         this.em = em;
     }
 
     @Override
-    public List<Film> extraire() throws SQLException {
+    public List<Film> extraire(){
         return em.createQuery("SELECT f FROM Film f", Film.class).getResultList();
     }
 
     @Override
-    public void insert(Film film) {
+    public void insert(Film film){
         em.persist(film);
     }
 
     @Override
-    public int update(Film film) throws SQLException {
+    public int update(Film film){
         em.merge(film);
         return 1;
     }
 
     @Override
-    public boolean delete(Film film) throws SQLException {
+    public boolean delete(Film film){
         Film attached = em.find(Film.class, film.getIdImdb());
         if (attached != null) {
             em.remove(attached);
@@ -46,11 +45,11 @@ public class FilmDao implements BaseDao<Film> {
         return false;
     }
 
-    public Film findById(String idImdb) {
+    public Film findById(String idImdb){
         return em.find(Film.class, idImdb);
     }
 
-    public boolean existsById(String idImdb) {
+    public boolean existsById(String idImdb){
         TypedQuery<Long> query = em.createQuery(
                 "SELECT COUNT(f) FROM Film f WHERE f.idImdb = :id", Long.class);
         query.setParameter("id", idImdb);

@@ -4,6 +4,7 @@ import fr.diginamic.entities.Lieu;
 import fr.diginamic.entities.Pays;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.*;
+
 import java.util.List;
 
 public class LieuDao implements BaseDao<Lieu> {
@@ -21,18 +22,18 @@ public class LieuDao implements BaseDao<Lieu> {
     }
 
     @Override
-    public void insert(Lieu lieu) {
+    public void insert(Lieu lieu){
         em.persist(lieu);
     }
 
     @Override
-    public int update(Lieu lieu) {
+    public int update(Lieu lieu){
         em.merge(lieu);
         return 1;
     }
 
     @Override
-    public boolean delete(Lieu lieu) {
+    public boolean delete(Lieu lieu){
         Lieu attachedLieu = em.contains(lieu) ? lieu : em.merge(lieu);
         em.remove(attachedLieu);
         return true;

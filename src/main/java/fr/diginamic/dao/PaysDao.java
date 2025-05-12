@@ -19,7 +19,7 @@ public class PaysDao implements BaseDao<Pays> {
     }
 
     @Override
-    public void insert(Pays pays) {
+    public void insert(Pays pays)  {
         em.persist(pays);
     }
 
