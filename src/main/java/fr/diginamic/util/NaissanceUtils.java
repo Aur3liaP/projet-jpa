@@ -6,8 +6,24 @@ import fr.diginamic.entities.Lieu;
 import fr.diginamic.entities.Personne;
 import fr.diginamic.mapper.PaysMapper;
 
+/**
+ * Utilitaire pour gérer les informations de naissance d'une personne.
+ * Cette classe fournit des méthodes pour configurer les informations de naissance
+ * d'une instance de {@link Personne} à partir d'un DTO de naissance.
+ */
 public class NaissanceUtils {
 
+    /**
+     * Configure les informations de naissance d'une personne à partir d'un DTO de naissance.
+     *
+     * @param personne     L'instance de {@link Personne} à laquelle les informations de naissance seront appliquées.
+     * @param naissanceDto Le DTO contenant les informations de naissance, y compris la date et le lieu de naissance.
+     *
+     * @see NaissanceDto
+     * @see Personne
+     * @see Lieu
+     * @see PaysDto
+     */
     public static void setNaissanceInfo(Personne personne, NaissanceDto naissanceDto) {
         if (naissanceDto != null) {
             personne.setDateNaissance(DateUtils.parseDate(naissanceDto.getDateNaissance()));

@@ -23,12 +23,6 @@ public class App {
 
     /** Point d'entrée principal de l'application. */
     public static void main(String[] args) {
-        // Utilisation du logger
-        logger.debug("Application démarrée");
-        logger.info("Information de l'application");
-        logger.error("Une erreur s'est produite", new Exception("Exemple d'exception"));
-
-
         EntityManagerFactory emf = null;
         EntityManager em = null;
 
@@ -46,7 +40,7 @@ public class App {
 
             long end = System.currentTimeMillis();
             logger.info("Traitement des films terminé avec succès");
-            System.out.println("Durée : " + (end - start) + " ms");
+            System.out.println("Durée : " + (long) ((end - start)/ 60000.0) + " minutes");
 
         } catch (Exception e) {
             logger.error("Erreur lors du traitement des films", e);
