@@ -34,6 +34,8 @@ public class FilmService {
     private final ActeurService acteurService;
     private final RoleService roleService;
 
+    private final EntityManager em;
+
     /**
      * Constructeur du service de film.
      *
@@ -47,6 +49,11 @@ public class FilmService {
         this.realisateurService = new RealisateurService(em);
         this.acteurService = new ActeurService(em);
         this.roleService = new RoleService(em);
+        this.em = em;
+    }
+
+    public EntityManager getEntityManager() {
+        return this.em;
     }
 
     /**
@@ -56,28 +63,32 @@ public class FilmService {
      * @param filmDto Le DTO à convertir et insérer
      */
     public void traiterFilm(FilmDto filmDto) {
-        // Vérification des paramètres
         if (filmDto == null) {
             logger.warn("Tentative de traitement d'un FilmDto null");
             return;
         }
+        try{
+            logger.debug("Traitement du film en cours...");
+            // Conversion du DTO en entité
+            Film film = FilmMapper.toFilm(filmDto);
 
-        // Conversion du DTO en entité
-        Film film = FilmMapper.toFilm(filmDto);
+            // Traitement des dépendances
+            ajouterPays(film);
+            ajouterLieuTournage(film);
+            ajouterGenres(film);
+            ajouterRealisateurs(film);
 
-        // Traitement des dépendances
-        ajouterPays(film);
-        ajouterLieuTournage(film);
-        ajouterGenres(film);
-        ajouterRealisateurs(film);
 
-        // Traitement des acteurs et rôles
-        Set<Acteur> tousLesActeurs = traiterActeursPrincipaux(filmDto);
-        tousLesActeurs.addAll(traiterRoles(film, filmDto));
-        film.setActeurs(new ArrayList<>(tousLesActeurs));
+            Set<Acteur> tousLesActeurs = traiterActeursPrincipaux(filmDto);
+            tousLesActeurs.addAll(traiterRoles(film, filmDto));
+            film.setActeurs(new ArrayList<>(tousLesActeurs));
 
-        // Persistance du film
-        persisterFilm(film);
+            persisterFilm(film);
+            logger.info("Traitement terminé avec succès");
+
+        } catch (Exception e) {
+            logger.error("Erreur lors du traitement du film", e);
+        }
     }
 
     /**

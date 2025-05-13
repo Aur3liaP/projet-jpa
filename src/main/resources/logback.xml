@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!-- Définition des propriétés pour les chemins de logs -->
+    <property name="LOG_DIR" value="logs/fr.diginamic" />
+
+    <!-- Création du répertoire de logs s'il n'existe pas -->
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
     <!-- redirection des logs vers la sortie Console Standard -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%msg%n</pattern>
-        </encoder>
-    </appender>
-
-    <!-- redirection des logs vers le fichier app.log -->
-    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>logs/app.log</file>
-        <append>true</append>
-        <immediateFlush>true</immediateFlush>
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="fr.diginamic.logs" level="ERROR" additivity="false">
-        <appender-ref ref="FILE" />
+    <!-- redirection des logs généraux vers app.log -->
+    <appender name="APP_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/app.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- redirection des logs de service vers service.log -->
+    <appender name="SERVICE_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/service.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/archived/service.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configuration du logger pour le package fr.diginamic (sauf service) -->
+    <logger name="fr.diginamic" level="ERROR" additivity="false">
+        <appender-ref ref="APP_FILE" />
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="fr.diginamic.service" level="DEBUG" />
+    <!-- Configuration du logger pour le package fr.diginamic.service -->
+    <logger name="fr.diginamic.service" level="DEBUG" additivity="false">
+        <appender-ref ref="SERVICE_FILE" />
+        <appender-ref ref="STDOUT" />
+    </logger>
 
     <!-- règle de logs par défaut. Ici : niveau INFO vers la sortie standard -->
     <root level="INFO">

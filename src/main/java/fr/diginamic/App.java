@@ -23,6 +23,12 @@ public class App {
 
     /** Point d'entrée principal de l'application. */
     public static void main(String[] args) {
+        // Utilisation du logger
+        logger.debug("Application démarrée");
+        logger.info("Information de l'application");
+        logger.error("Une erreur s'est produite", new Exception("Exemple d'exception"));
+
+
         EntityManagerFactory emf = null;
         EntityManager em = null;
 
@@ -74,16 +80,27 @@ public class App {
      * @param filmService Service de traitement des films
      */
     private static void traiterFilms(List<FilmDto> filmDtos, FilmService filmService) {
+        EntityManager em = filmService.getEntityManager();
         int filmsTraites = 0;
         int filmsEnEchec = 0;
 
         for (FilmDto filmDto : filmDtos) {
             try {
+                em.getTransaction().begin();
+
                 filmService.traiterFilm(filmDto);
+
+                em.getTransaction().commit();
                 filmsTraites++;
+                logger.info("Film '{}' traité avec succès", filmDto.getTitre());
+
             } catch (Exception e) {
                 filmsEnEchec++;
                 logger.error("Erreur lors du traitement du film : {}", filmDto.getTitre(), e);
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+                em.clear();
             }
         }
 
