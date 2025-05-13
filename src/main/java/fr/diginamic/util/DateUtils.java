@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /**
  * Permet de traiter les différents cas de figure des dates et de les convertir dans un format parsé
@@ -16,12 +17,18 @@ public class DateUtils {
 
         dateStr = dateStr.trim();
 
+        if (Pattern.matches("^\\d{4}$", dateStr)) {
+            int year = Integer.parseInt(dateStr);
+            return LocalDate.of(year, 1, 1);
+        }
+
         DateTimeFormatter[] formatters = new DateTimeFormatter[]{
                 DateTimeFormatter.ofPattern("MMMM d yyyy", Locale.ENGLISH),
                 DateTimeFormatter.ofPattern("MMMM dd yyyy", Locale.ENGLISH),
                 DateTimeFormatter.ofPattern("yyyy", Locale.ENGLISH),
                 DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH),
-                DateTimeFormatter.ofPattern("MMMM dd yyyy", Locale.ENGLISH),
+                DateTimeFormatter.ofPattern("MMMM dd", Locale.ENGLISH),
+                DateTimeFormatter.ofPattern("MMMM d", Locale.ENGLISH),
                 DateTimeFormatter.ofPattern("M/d/yyyy", Locale.ENGLISH)
         };
 
@@ -29,7 +36,7 @@ public class DateUtils {
             try {
                 return LocalDate.parse(dateStr, formatter);
             } catch (DateTimeParseException e) {
-                System.out.println("Impossible de formater la date");
+                // Test format suivant
             }
         }
         throw new IllegalArgumentException("Impossible de parser la date: " + dateStr);

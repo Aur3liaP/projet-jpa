@@ -20,7 +20,7 @@ public class FilmDto {
 
     private String url;
 
-    private Float rating;
+    private String rating;
 
     @JsonProperty("plot")
     private String resume;
@@ -28,7 +28,7 @@ public class FilmDto {
     private String langue;
 
     @JsonProperty("anneeSortie")
-    private Integer annee;
+    private String annee;
 
     private PaysDto pays;
 
@@ -69,7 +69,7 @@ public class FilmDto {
      * @param genres            Liste des genres auxquels le film appartient (objets DTO).
      */
 
-    public FilmDto(String idImdb, String titre, String url, Float rating, String resume, String langue, Integer annee, PaysDto pays, LieuDto lieuTournage, List<RealisateurDto> realisateurs, List<ActeurDto> acteursPrincipaux, List<RoleDto> roles, List<String> genres) {
+    public FilmDto(String idImdb, String titre, String url, String rating, String resume, String langue, String annee, PaysDto pays, LieuDto lieuTournage, List<RealisateurDto> realisateurs, List<ActeurDto> acteursPrincipaux, List<RoleDto> roles, List<String> genres) {
         this.idImdb = idImdb;
         this.titre = titre;
         this.url = url;
@@ -113,11 +113,11 @@ public class FilmDto {
         this.url = url;
     }
 
-    public Float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(Float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
@@ -137,11 +137,11 @@ public class FilmDto {
         this.langue = langue;
     }
 
-    public Integer getAnnee() {
+    public String getAnnee() {
         return annee;
     }
 
-    public void setAnnee(Integer annee) {
+    public void setAnnee(String annee) {
         this.annee = annee;
     }
 

@@ -2,6 +2,7 @@ package fr.diginamic.mapper;
 
 import fr.diginamic.dto.*;
 import fr.diginamic.entities.Film;
+import fr.diginamic.util.RatingUtils;
 
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class FilmMapper {
         film.setIdImdb(dto.getIdImdb());
         film.setTitre(dto.getTitre());
         film.setUrl(dto.getUrl());
-        film.setRating(dto.getRating());
+        film.setRating(RatingUtils.parseRating(dto.getRating()));
         film.setResume(dto.getResume());
         film.setLangue(dto.getLangue());
         film.setAnnee(dto.getAnnee());

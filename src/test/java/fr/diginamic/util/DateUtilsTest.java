@@ -25,4 +25,12 @@ class DateUtilsTest {
         LocalDate parsedDate = DateUtils.parseDate(dateStr);
         assertEquals(expectedDate, parsedDate);
     }
+
+    @Test
+    public void testParseDateYearWithSpace() {
+        String dateStr = "1974 ";
+        LocalDate expectedDate = LocalDate.of(1974, 1, 1);
+        LocalDate parsedDate = DateUtils.parseDate(dateStr);
+        assertEquals(expectedDate, parsedDate);
+    }
 }

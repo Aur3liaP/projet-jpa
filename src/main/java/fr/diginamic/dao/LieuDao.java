@@ -24,6 +24,7 @@ public class LieuDao implements BaseDao<Lieu> {
     @Override
     public void insert(Lieu lieu){
         em.persist(lieu);
+        em.flush();
     }
 
     @Override

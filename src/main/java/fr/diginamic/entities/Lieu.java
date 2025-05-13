@@ -20,15 +20,15 @@ public class Lieu {
     private Integer id;
 
     /** État ou région du lieu */
-    @Column(name = "ETAT_REGION", length = 50)
+    @Column(name = "ETAT_REGION", length = 100)
     private String etatRegion;
 
     /** Ville du lieu */
-    @Column(name = "VILLE", length = 50)
+    @Column(name = "VILLE", length = 100)
     private String ville;
 
     /** Libellé complet du lieu */
-    @Column(name = "LIBELLE", length = 250)
+    @Column(name = "LIBELLE")
     private String libelle;
 
     /** Pays auquel appartient ce lieu */

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 /**
@@ -27,14 +26,14 @@ public class Film {
 
     /** Année de sortie du film */
     @Column(name = "ANNEE")
-    private Integer annee;
+    private String annee;
 
     /** Note du film (sur 10) */
     @Column(name = "RATING")
     private Float rating;
 
     /** URL vers la page du film */
-    @Column(name = "URL", length = 255)
+    @Column(name = "URL")
     private String url;
 
     /** Langue principale du film */
@@ -164,11 +163,11 @@ public class Film {
         this.titre = titre;
     }
 
-    public Integer getAnnee() {
+    public String getAnnee() {
         return annee;
     }
 
-    public void setAnnee(Integer annee) {
+    public void setAnnee(String annee) {
         this.annee = annee;
     }
 
