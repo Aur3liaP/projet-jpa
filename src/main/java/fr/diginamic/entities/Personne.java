@@ -8,7 +8,9 @@ import java.time.LocalDate;
  * Cette classe sert de base pour les acteurs et réalisateurs.
  */
 @Entity
-@Table(name = "personnes")
+@Table(name = "personnes", indexes = {
+        @Index(name = "idx_id_imdb", columnList = "ID_IMDB"),
+})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Personne {
 

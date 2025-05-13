@@ -9,7 +9,9 @@ import java.util.List;
  * Un pays peut être associé à des films et à des lieux.
  */
 @Entity
-@Table(name = "pays")
+@Table(name = "pays", indexes = {
+        @Index(name = "idx_nom", columnList = "NOM"),
+})
 public class Pays {
 
     /** Nom du pays unique */

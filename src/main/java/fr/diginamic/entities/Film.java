@@ -12,7 +12,10 @@ import java.util.List;
  * essentielles sur un film comme son titre, son année de sortie, sa note, etc.
  */
 @Entity
-@Table(name = "Films")
+@Table(name = "Films", indexes = {
+        @Index(name = "idx_id_imdb", columnList = "ID_IMDB"),
+        @Index(name = "idx_titre", columnList = "TITRE"),
+})
 public class Film {
 
     /** Identifiant unique du film provenant de IMDb */

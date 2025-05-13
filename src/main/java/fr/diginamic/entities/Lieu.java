@@ -10,7 +10,11 @@ import java.util.List;
  * Un lieu peut être associé à des films (lieu de tournage) et à des personnes (lieu de naissance).
  */
 @Entity
-@Table(name = "lieux")
+@Table(name = "lieux", indexes = {
+        @Index(name = "idx_ville", columnList = "VILLE"),
+        @Index(name = "idx_etat_region", columnList = "ETAT_REGION"),
+        @Index(name = "idx_pays_id", columnList = "ID_PAYS")
+})
 public class Lieu {
 
     /** Identifiant unique auto-généré */
