@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config
+        xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+        xmlns='http://www.ehcache.org/v3'
+        xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core.xsd">
+
+    <cache-template name="defaultTemplate">
+        <expiry>
+            <ttl unit="minutes">60</ttl>
+        </expiry>
+        <resources>
+            <heap unit="entries">500</heap>
+            <offheap unit="MB">10</offheap>
+        </resources>
+    </cache-template>
+
+    <!-- Cache pour l'entité Pays -->
+    <cache alias="fr.diginamic.entite.Pays" uses-template="defaultTemplate" />
+
+    <!-- Cache pour l'entité Personne -->
+    <cache alias="fr.diginamic.entite.Personne" uses-template="defaultTemplate" />
+
+    <!-- Cache pour l'entité Lieu -->
+    <cache alias="fr.diginamic.entite.Lieu" uses-template="defaultTemplate" />
+
+    <!-- Cache pour l'entité Film -->
+    <cache alias="fr.diginamic.entite.Film" uses-template="defaultTemplate" />
+
+
+</config>

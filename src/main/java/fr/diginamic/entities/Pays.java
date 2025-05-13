@@ -1,6 +1,8 @@
 package fr.diginamic.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  * Un pays peut être associé à des films et à des lieux.
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "pays", indexes = {
         @Index(name = "idx_nom", columnList = "NOM"),
 })

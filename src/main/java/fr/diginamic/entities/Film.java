@@ -1,6 +1,7 @@
 package fr.diginamic.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.List;
  * essentielles sur un film comme son titre, son année de sortie, sa note, etc.
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "Films", indexes = {
         @Index(name = "idx_id_imdb", columnList = "ID_IMDB"),
         @Index(name = "idx_titre", columnList = "TITRE"),

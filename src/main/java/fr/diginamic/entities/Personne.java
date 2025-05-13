@@ -1,6 +1,8 @@
 package fr.diginamic.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import java.time.LocalDate;
 
 /**
@@ -8,6 +10,8 @@ import java.time.LocalDate;
  * Cette classe sert de base pour les acteurs et réalisateurs.
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "personnes", indexes = {
         @Index(name = "idx_id_imdb", columnList = "ID_IMDB"),
 })

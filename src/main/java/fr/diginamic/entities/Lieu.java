@@ -1,6 +1,7 @@
 package fr.diginamic.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
  * Un lieu peut être associé à des films (lieu de tournage) et à des personnes (lieu de naissance).
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "lieux", indexes = {
         @Index(name = "idx_ville", columnList = "VILLE"),
         @Index(name = "idx_etat_region", columnList = "ETAT_REGION"),

@@ -33,9 +33,10 @@ public class App {
         EntityManager em = null;
 
         try {
+            long start = System.currentTimeMillis();
+
             emf = Persistence.createEntityManagerFactory("imdb");
             em = emf.createEntityManager();
-            em.getTransaction().begin();
 
             List<FilmDto> filmDtos = chargerFilms();
 
@@ -43,8 +44,9 @@ public class App {
 
             traiterFilms(filmDtos, filmService);
 
-            em.getTransaction().commit();
+            long end = System.currentTimeMillis();
             logger.info("Traitement des films terminé avec succès");
+            System.out.println("Durée : " + (end - start) + " ms");
 
         } catch (Exception e) {
             logger.error("Erreur lors du traitement des films", e);
@@ -53,6 +55,7 @@ public class App {
                 em.getTransaction().rollback();
             }
         } finally {
+
             fermerRessources(em, emf);
         }
     }
