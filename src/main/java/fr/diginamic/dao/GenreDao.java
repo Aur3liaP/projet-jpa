@@ -5,10 +5,17 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+/**
+ * Classe DAO pour gérer les opérations de persistance sur les Genres de Films
+ */
 public class GenreDao implements BaseDao<Genre>{
 
     private final EntityManager em;
 
+    /**
+     * Constructeur avec injection de l'EntityManager
+     * @param em EntityManager à utiliser
+     */
     public GenreDao(EntityManager em) {
         this.em = em;
     }
@@ -42,6 +49,11 @@ public class GenreDao implements BaseDao<Genre>{
         return result.isEmpty() ? null : result.get(0);
     }
 
+    /**
+     * Recherche un genre par son nom
+     * @param nom du genre de film à rechercher
+     * @return Genre trouvé ou null
+     */
     public Genre findByNom(String nom) {
         List<Genre> result = em.createQuery("SELECT g FROM Genre g WHERE g.nom = :nom", Genre.class)
                 .setParameter("nom", nom)

@@ -3,7 +3,7 @@ package fr.diginamic.dao;
 import java.util.List;
 
 /**
- * Mise en place d'une interface commune pour chaque DAO.
+ * Mise en place d'une interface commune (CRUD) pour chaque DAO.
  */
 public interface BaseDao <T>{
     List<T> extraire();

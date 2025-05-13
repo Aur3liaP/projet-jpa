@@ -63,16 +63,4 @@ public class RealisateurDao implements BaseDao<Realisateur> {
                 .getResultList();
         return result.isEmpty() ? null : result.get(0);
     }
-
-    /**
-     * Vérifie si un réalisateur éxiste par son ID IMDb
-     * @param idImdb ID IMDb à vérifier
-     * @return true si le réalisateur existe, false sinon
-     */
-    public boolean existsById(String idImdb) {
-        Long count = em.createQuery("SELECT COUNT(r) FROM Realisateur r WHERE r.idImdb = :idImdb", Long.class)
-                .setParameter("idImdb", idImdb)
-                .getSingleResult();
-        return count > 0;
-    }
 }

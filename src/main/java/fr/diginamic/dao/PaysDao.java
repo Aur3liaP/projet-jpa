@@ -5,10 +5,17 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+/**
+ * Classe DAO pour gérer les opérations de persistance sur les Pays
+ */
 public class PaysDao implements BaseDao<Pays> {
 
     private final EntityManager em;
 
+    /**
+     * Constructeur avec injection de l'EntityManager
+     * @param em EntityManager à utiliser
+     */
     public PaysDao(EntityManager em) {
         this.em = em;
     }
@@ -35,6 +42,11 @@ public class PaysDao implements BaseDao<Pays> {
         return true;
     }
 
+    /**
+     * Recherche un pays par son nom
+     * @param nom nom du pays à rechercher
+     * @return Pays trouvé ou null
+     */
     public Pays findByNom(String nom) {
         List<Pays> result = em.createQuery("SELECT p FROM Pays p WHERE p.nom = :nom", Pays.class)
                 .setParameter("nom", nom)

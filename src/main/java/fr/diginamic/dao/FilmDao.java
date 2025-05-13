@@ -6,15 +6,16 @@ import jakarta.persistence.*;
 import java.util.List;
 
 /**
- * DAO spécifique pour l'entité Film.
- */
-/**
- * DAO spécifique pour l'entité Film.
+ * Classe DAO pour gérer les opérations de persistance sur les Films
  */
 public class FilmDao implements BaseDao<Film> {
 
     private final EntityManager em;
 
+    /**
+     * Constructeur avec injection de l'EntityManager
+     * @param em EntityManager à utiliser
+     */
     public FilmDao(EntityManager em) {
         this.em = em;
     }
@@ -49,6 +50,11 @@ public class FilmDao implements BaseDao<Film> {
         return em.find(Film.class, idImdb);
     }
 
+    /**
+     * Recherche si un film est existant par son ID IMDb
+     * @param idImdb ID IMDb du film à rechercher
+     * @return Film trouvé si existant
+     */
     public boolean existsById(String idImdb){
         TypedQuery<Long> query = em.createQuery(
                 "SELECT COUNT(f) FROM Film f WHERE f.idImdb = :id", Long.class);
