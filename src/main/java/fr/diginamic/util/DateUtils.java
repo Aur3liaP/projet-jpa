@@ -10,6 +10,12 @@ import java.util.regex.Pattern;
  * Permet de traiter les différents cas de figure des dates et de les convertir dans un format parsé
  */
 public class DateUtils {
+    /**
+     * Extrait la date depuis une chaîne contenant des dates de formats différents.
+     *
+     * @param dateStr la chaîne à parser
+     * @return la date formatée et parsée
+     */
     public static LocalDate parseDate(String dateStr) {
         if (dateStr == null || dateStr.trim().isEmpty()) {
             return null;
