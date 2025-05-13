@@ -32,7 +32,7 @@ public class Personne {
     private LocalDate dateNaissance;
 
     /** URL vers la page de la personne */
-    @Column(name = "URL", length = 255)
+    @Column(name = "URL")
     private String url;
 
     /** Lieu de naissance de la personne */

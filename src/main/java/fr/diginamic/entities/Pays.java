@@ -20,7 +20,7 @@ public class Pays {
     private String nom;
 
     /** URL associée au pays */
-    @Column(name = "URL", length = 255)
+    @Column(name = "URL")
     private String url;
 
     /** Liste des lieux situés dans ce pays */
